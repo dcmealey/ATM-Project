@@ -586,15 +586,24 @@ int resetPinFunc(int pin) {
                 break;
                 }
             
-            // display user input error message
+            // clear user input & display user input error message
             else {
+                // clear user input
+                cin.clear();
+                cin.ignore(10000,'\n');
+                
+                // display user input error message output
                 incorrectInputDisplay();
             }
         }
         
-        // display user input error message
-        
+        // clear user input & display user input error message
         else {
+            // clear user input
+            cin.clear();
+            cin.ignore(10000,'\n');
+                
+            // display user input error message output
             incorrectInputDisplay();
         }
     }
