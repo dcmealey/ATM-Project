@@ -714,81 +714,92 @@ int main() {
     // launch variable input, for user's input to the menu options
     int input, inputacct;
     
-    // display menu
-    displayMainMenu();
-    
-    // Retrieve user's input and assing it to the variable input
+    // display "Enter your pin:" message
+    cout <<" ___________________________________________  \n"
+         <<"|                                           | \n"
+         <<"|            Enter your pin:                | \n"
+         <<"|___________________________________________| \n";
+    // Retrieve user's input and assign it to the variable input
     cin >> input;
-        
-    // Start a while loop, with the loop active as long as the user's input is not equal to 5 (input option to exit the program)
-     while(input!=6) {
-        
-         // initialize a switch loop
-        switch(input) {
-            
-            // case 1 - Deposit
-            case 1:
-                depositFunc(inputacct, deposit, *pointerChecking, *pointerSavings);
-                
-                // save pincode value, and checking & savings balances to outgoing file stream
-                outgoingFileStreamSaveFunc(*pincode, *pointerChecking, *pointerSavings);
-                
-                // break out of the current case loop
-                break;
-            
-            // case 2 - Withdrawal
-            case 2:
-                withdrawFunc(inputacct, deposit, *pointerChecking, *pointerSavings);
-                
-                // save pincode value, and checking & savings balances to outgoing file stream
-                outgoingFileStreamSaveFunc(*pincode, *pointerChecking, *pointerSavings);
-                
-                // break out of the current case loop
-                break;               
-            
-            // case 3 - Transfer
-            case 3:
-                transferFunc(inputacct, transfer, *pointerChecking, *pointerSavings);
-                
-                // save pincode value, and checking & savings balances to outgoing file stream
-                outgoingFileStreamSaveFunc(*pincode, *pointerChecking, *pointerSavings);
-                
-                // break out of the current case loop
-                break;                
-            // case 4 - Account Balance Inquiry
-            case 4:
-                balanceInquiryFunc(inputacct, *pointerChecking, *pointerSavings);
-                // break out of the current case loop
-                break;
-            
-            // case 5 - Reset Pin
-            case 5:
-                *pincode = resetPinFunc(*pincode);
-                
-                // save pincode value, and checking & savings balances to outgoing file stream
-                outgoingFileStreamSaveFunc(*pincode, *pointerChecking, *pointerSavings);
-               
-                // break out of the current case loop
-                break;
-            
-            // default case - catches any incorrect input, clears the user inputted value, and displays error message to user
-            default:
-                // clear user input
-                cin.clear();
-                cin.ignore(10000,'\n');
-                
-                // display error message to user
-                incorrectInputDisplay();
-                
-                // break out of the current case loop
-                break;
+    
+    // start a while loop, which initiates the ATM program logic if the user inputted value for their pin matches the one on record, or if the *pincode variable value is 0000
+    while (input == *pincode || *pincode == 0000) {          
+        // display menu
+        displayMainMenu();
+
+        // Retrieve user's input and assign it to the variable input
+        cin >> input;
+
+        // Start a while loop, with the loop active as long as the user's input is not equal to 5 (input option to exit the program)
+         while(input!=6) {
+
+             // initialize a switch loop
+            switch(input) {
+
+                // case 1 - Deposit
+                case 1:
+                    depositFunc(inputacct, deposit, *pointerChecking, *pointerSavings);
+
+                    // save pincode value, and checking & savings balances to outgoing file stream
+                    outgoingFileStreamSaveFunc(*pincode, *pointerChecking, *pointerSavings);
+
+                    // break out of the current case loop
+                    break;
+
+                // case 2 - Withdrawal
+                case 2:
+                    withdrawFunc(inputacct, deposit, *pointerChecking, *pointerSavings);
+
+                    // save pincode value, and checking & savings balances to outgoing file stream
+                    outgoingFileStreamSaveFunc(*pincode, *pointerChecking, *pointerSavings);
+
+                    // break out of the current case loop
+                    break;               
+
+                // case 3 - Transfer
+                case 3:
+                    transferFunc(inputacct, transfer, *pointerChecking, *pointerSavings);
+
+                    // save pincode value, and checking & savings balances to outgoing file stream
+                    outgoingFileStreamSaveFunc(*pincode, *pointerChecking, *pointerSavings);
+
+                    // break out of the current case loop
+                    break;                
+                // case 4 - Account Balance Inquiry
+                case 4:
+                    balanceInquiryFunc(inputacct, *pointerChecking, *pointerSavings);
+                    // break out of the current case loop
+                    break;
+
+                // case 5 - Reset Pin
+                case 5:
+                    *pincode = resetPinFunc(*pincode);
+
+                    // save pincode value, and checking & savings balances to outgoing file stream
+                    outgoingFileStreamSaveFunc(*pincode, *pointerChecking, *pointerSavings);
+
+                    // break out of the current case loop
+                    break;
+
+                // default case - catches any incorrect input, clears the user inputted value, and displays error message to user
+                default:
+                    // clear user input
+                    cin.clear();
+                    cin.ignore(10000,'\n');
+
+                    // display error message to user
+                    incorrectInputDisplay();
+
+                    // break out of the current case loop
+                    break;
+            }
+
+        // display main menu
+        displayMainMenu();
+
+        // Retrieve user's input and assing it to the variable input
+        cin >> input;
         }
-    
-    // display main menu
-    displayMainMenu();
-    
-    // Retrieve user's input and assing it to the variable input
-    cin >> input;
     }
     
     // save pincode value, and checking & savings balances to outgoing file stream
