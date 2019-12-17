@@ -722,8 +722,9 @@ int main() {
     // Retrieve user's input and assign it to the variable input
     cin >> input;
     
-    // start a while loop, which initiates the ATM program logic if the user inputted value for their pin matches the one on record, or if the *pincode variable value is 0000
-    while (input == *pincode || *pincode == 0000) {          
+    // start a while loop, which initiates the ATM program logic if the user inputted value for their pin matches the one on record
+    while (input == *pincode) {          
+        
         // display menu
         displayMainMenu();
 
